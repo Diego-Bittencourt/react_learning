@@ -2,21 +2,22 @@
 //you can name the function in anyway, but it's a good practice to
 //repeat the file name
 
+import ExpenseDate from "./ExpenseDate";
 import "./ExpenseItem.css";
 //you shoudl import the css files in the component
 
-function ExpenseItem() {
-  const expenseDate = new Date(2021, 2, 28);
-  const expenseTitle = "Car Insurance";
-  const expenseAmount = 294.67;
+function ExpenseItem(props) {
+  //react assures that each component receives one parameter as object with all props received
+
+  //the props have information about the date. This props is redirected to another child component,
 
   //you can only have one root element per each return statement
   return (
     <div className="expense-item">
-      <div>{expenseDate.toISOString()}</div>
+      <ExpenseDate date={props.date}></ExpenseDate>
       <div className="expense-item__description">
-        <h2>{expenseTitle}</h2>
-        <div className="expense-item__price">{expenseAmount}</div>
+        <h2>{props.title}</h2>
+        <div className="expense-item__price">${props.amount}</div>
       </div>
     </div>
   );
