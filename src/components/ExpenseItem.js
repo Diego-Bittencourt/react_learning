@@ -17,6 +17,14 @@ function ExpenseItem(props) {
   //to use the card component as a wrapper to pass content inside it, you have to set
   //the props.children built-in props to be displayed inside the wrapper component
   //all components receive that props, even if you don't set it.
+
+  //you can create a function that can be triggered when an event happens.
+  //to list to an event, we can add the on and the event in the element we want to listen.
+  //React listens to all built-in events in the html elements.
+  //You can create an arrow function, but this is not ideal
+  const clickHandler = (data) => {
+    console.log('clicked', data)
+  }
   return (
     <Card className="expense-item">
       <ExpenseDate date={props.date}></ExpenseDate>
@@ -24,6 +32,7 @@ function ExpenseItem(props) {
         <h2>{props.title}</h2>
         <div className="expense-item__price">${props.amount}</div>
       </div>
+      <button onClick={clickHandler}>Change Title</button>
     </Card>
   );
 }
