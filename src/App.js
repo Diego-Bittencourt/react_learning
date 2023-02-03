@@ -25,9 +25,13 @@ function App() {
     },
   ];
 
+  const addExpenseHandler = (expense) => {
+    console.log("In App.js", expense);
+  };
+
   return (
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <h1>
         I'm learning React and I'll a get a job as software engineer THIS YEAR!
       </h1>

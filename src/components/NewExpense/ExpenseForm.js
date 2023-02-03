@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     //a component can have multiple states at the same time and they are changed separately
     //there is also another approach, create and object the holds all the data.
     //You can create this approach by passing a object to the useState()
@@ -33,7 +33,10 @@ const ExpenseForm = () => {
             amount: enteredAmount,
             date: new Date(enteredDate),
         }
-        console.log(expenseData)
+
+        //the function is being passed from the parent component as a props and should be called
+        //and the data being passed as argument
+        props.onSaveExpenseData(expenseData)
 
         setEnteredAmount('')
         setEnteredDate('')
