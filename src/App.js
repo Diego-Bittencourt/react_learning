@@ -32,9 +32,7 @@ function App() {
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      <h1>
-        I'm learning React and I'll a get a job as software engineer THIS YEAR!
-      </h1>
+     
       <Expenses items={expenses}></Expenses>
     </div>
   );
