@@ -44,12 +44,26 @@ const ExpenseForm = (props) => {
     //using this approach doesn't work like it would work on Vue
     //to use the similar approach, I have to implement two way binding by using the
     //built-in value propertie and use React's syntax to connect to the state
+
+    setFormState(false);
   };
 
-  return (
-    <form onSubmit={submitHandler}>
+  
+  const showFormHandler = () => {
+    setFormState(current => !current)
+  }
+  
+  const [formState, setFormState] = useState(false)
+
+  
+  
+  if (!formState) {return <button onClick={showFormHandler}>Add New Expense</button>}
+  else {
+    return (
+      <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
         <div className="new-expense__control">
+          
           <label>Title</label>
           <input
             type="text"
@@ -79,10 +93,15 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        <button type="button" onClick={showFormHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
-    </form>
-  );
+      </form>)
+  }
+
+
+
+  
 };
 
 export default ExpenseForm;
