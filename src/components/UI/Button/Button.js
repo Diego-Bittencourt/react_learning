@@ -1,7 +1,11 @@
+import React from "react";
+//import styled from "styled-components";
 
-import styled from "styled-components";
+//import "./Button.css";
+//using the syntax to use css modules
+import styles from './Button.module.css';
+//the css file must also receive the name .module.css
 
-import "./Button.css";
 
 //When you have a component just apply style, you can use styled components
 // with this package, you can create an variable and use the special syntax:  
@@ -13,39 +17,39 @@ import "./Button.css";
 // &:hover and then the styles.
 //the styled components package will create a class with a unique name and apply it 
 // int the document.
-const Button = styled.button`
-  width: 100%;
-  font: inherit;
-  padding: 0.5rem 1.5rem;
-  border: 1px solid #8b005d;
-  color: white;
-  background: #8b005d;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
-  cursor: pointer;
+// const Button = styled.button`
+//   width: 100%;
+//   font: inherit;
+//   padding: 0.5rem 1.5rem;
+//   border: 1px solid #8b005d;
+//   color: white;
+//   background: #8b005d;
+//   box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+//   cursor: pointer;
 
-  @media (min-width: 750px) {
-    width: auto;
-  }
+//   @media (min-width: 750px) {
+//     width: auto;
+//   }
 
 
-  &:focus {
-    outline: none;
-  }
+//   &:focus {
+//     outline: none;
+//   }
 
-  &:hover,
-  &:active {
-    background: #ac0e77;
-    border-color: #ac0e77;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
-  }
-`;
+//   &:hover,
+//   &:active {
+//     background: #ac0e77;
+//     border-color: #ac0e77;
+//     box-shadow: 0 0 8px rgba(0, 0, 0, 0.26);
+//   }
+// `;
 
-// const Button = props => {
-//   return (
-//     <button type={props.type} className="button" onClick={props.onClick}>
-//       {props.children}
-//     </button>
-//   );
-// };
+const Button = props => {
+  return (
+    <button type={props.type} className={styles.button} onClick={props.onClick}>
+      {props.children}
+    </button>
+  );
+};
 
 export default Button;
