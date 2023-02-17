@@ -3,6 +3,16 @@ import styled from "styled-components";
 
 import "./Button.css";
 
+//When you have a component just apply style, you can use styled components
+// with this package, you can create an variable and use the special syntax:  
+// styled.button``
+// inside the style object, there is a method for each html element and you pass
+// the css you want to apply between the backticks
+// you don't use selector and for each special condition, like hover or active,
+// use the & and the effect, like
+// &:hover and then the styles.
+//the styled components package will create a class with a unique name and apply it 
+// int the document.
 const Button = styled.button`
   font: inherit;
   padding: 0.5rem 1.5rem;
