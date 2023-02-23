@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./AddUser.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
+import ErrorModal from "../UI/ErrorModal";
 
 const AddUser = (props) => {
 
@@ -25,15 +26,25 @@ const AddUser = (props) => {
         setUserAge(event.target.value)
     };
 
+    //setting error handling messages
+    const [errorMessage, setErrorMessage] = useState(null)
+
     //the add user handler when the form tries to submit
     const addUserHandler = (event) => {
         //prevent default submission behaviour
         event.preventDefault();
 
         //checking if the inputs are empty
-        if (userName.trim().length === 0 || +userAge < 1) {
+        if (userName.trim().length === 0) {
+            setErrorMessage({title: 'Invalid Name', message: 'Please, input a valid username'})
             setIsFormValid(false);
             return;
+        }
+
+        if (+userAge < 1 || userAge.trim().length === 0) {
+          setErrorMessage({title: 'Invalid Age', message: 'Please, input a valid age'})
+          setIsFormValid(false);
+          return;
         }
 
         //form is validated and set the variable to true
@@ -53,6 +64,8 @@ const AddUser = (props) => {
   //add other classes that might be used there too.
 
   return (
+    <div>
+    {errorMessage && <ErrorModal title={errorMessage.title} message={errorMessage.message} onClick={() => setErrorMessage(null)}/>}
     <Card className={styles.input}>
       <form onSubmit={addUserHandler}>
         <label htmlFor="username">UserName</label>
@@ -63,6 +76,7 @@ const AddUser = (props) => {
         { !isFormValid ? <p>Insert a valid name and age</p> : null}
       </form>
     </Card>
+    </div>
   );
 };
 
