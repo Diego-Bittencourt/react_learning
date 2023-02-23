@@ -64,7 +64,7 @@ const AddUser = (props) => {
   //add other classes that might be used there too.
 
   return (
-    <div>
+    <>
     {errorMessage && <ErrorModal title={errorMessage.title} message={errorMessage.message} onClick={() => setErrorMessage(null)}/>}
     <Card className={styles.input}>
       <form onSubmit={addUserHandler}>
@@ -76,7 +76,7 @@ const AddUser = (props) => {
         { !isFormValid ? <p>Insert a valid name and age</p> : null}
       </form>
     </Card>
-    </div>
+    </>
   );
 };
 

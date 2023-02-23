@@ -5,7 +5,7 @@ import styles from "./ErrorModal.module.css";
 
 const ErrorModal = (props) => {
   return (
-    <div>
+    <>
       <div className={styles.backdrop} onClick={props.onClick}></div>
       <Card className={styles.modal}>
         <header className={styles.header}>
@@ -18,8 +18,12 @@ const ErrorModal = (props) => {
           <Button type="button" onClick={props.onClick}>Okay</Button>
         </footer>
       </Card>
-    </div>
+    </>
   );
 };
+
+//in order to avoid the div soupt, you can use the <React.fragment> or just <>
+//to wrap the return statement and fulfill the jsx requiremente and not end
+//with a div soup
 
 export default ErrorModal;
