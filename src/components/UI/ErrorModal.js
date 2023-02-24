@@ -9,6 +9,7 @@ const Backdrop = (props) => {
   return <div className={styles.backdrop} onClick={props.onClick}></div>;
 };
 
+//creating a overlay component
 const Overlay = (props) => {
   return (
     <Card className={styles.modal}>
@@ -27,6 +28,12 @@ const Overlay = (props) => {
   );
 };
 
+
+//placing the modal in a different place can be achieved by using ReactDOM.createPortal()
+//the function must be imported, suggestion, as ReactDOM from "react-dom"
+//Each ReactDom.createPortal() receives two arguments. The first is the jsx element
+//to be rendered and the second is a DOM node, that can be stored in a variable
+//or called directly using the document API.
 const ErrorModal = (props) => {
   return (
     <React.Fragment>
