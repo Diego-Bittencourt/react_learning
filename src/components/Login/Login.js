@@ -13,10 +13,23 @@ const Login = (props) => {
 
 
   useEffect(() => {
-    console.log(enteredEmail, enteredPassword)
-    setFormIsValid(
-      enteredPassword.trim().length > 6 && enteredEmail.includes('@')
-    );
+    const identifier = setTimeout(() => {
+
+      console.log('Check for validadity.')
+      setFormIsValid(
+        enteredPassword.trim().length > 6 && enteredEmail.includes('@')
+      );
+
+    }, 500);
+
+    //useEffect can return a function which is called cleaner function.
+    //useEffect will only trigger the next hook after the cleaner function executes.
+    //in this approach, I created a system to verify the input after the user spends .5 sec withouth typing
+    return () => {
+      clearTimeout(identifier)
+      console.log('CLEARED')
+    }
+    
   }, [enteredEmail, enteredPassword])
 
 
