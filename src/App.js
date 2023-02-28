@@ -16,11 +16,9 @@ function App() {
     //using the useEffect to chech the local storage
     const storedLog = localStorage.getItem('isLoggedIn');
     if (storedLog === '1') {
-      console.log('is logged');
       setIsLoggedIn(true);
     }
 
-    console.log('useEffect was called')
   }, [])
   //if the dependencies of the useEffect hook are empty, it only runs on the component first load
 
