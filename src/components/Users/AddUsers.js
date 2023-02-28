@@ -126,3 +126,8 @@ const AddUser = (props) => {
 };
 
 export default AddUser;
+
+
+//When the content of a component is being controlled by react, it is a controlled component. 
+//the older approach of using useState made the input components controlled components.
+//When the I used the Refs approach to connect the input, that made the input an uncontrolled component
