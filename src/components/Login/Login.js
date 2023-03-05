@@ -24,7 +24,7 @@ const Login = (props) => {
 
     //useEffect can return a function which is called cleaner function.
     //useEffect will only trigger the next hook after the cleaner function executes.
-    //in this approach, I created a system to verify the input after the user spends .5 sec withouth typing
+    //in this approach, I created a system to verify the input after the user spends .5 sec withouth
     return () => {
       clearTimeout(identifier)
       console.log('CLEARED')
