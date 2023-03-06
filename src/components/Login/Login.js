@@ -11,37 +11,42 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-
   useEffect(() => {
-    const identifier = setTimeout(() => {
+    console.log('EFFECT RUNNING');
 
-      console.log('Check for validadity.')
-      setFormIsValid(
-        enteredPassword.trim().length > 6 && enteredEmail.includes('@')
-      );
-
-    }, 500);
-
-    //useEffect can return a function which is called cleaner function.
-    //useEffect will only trigger the next hook after the cleaner function executes.
-    //in this approach, I created a system to verify the input after the user spends .5 sec withouth
     return () => {
-      clearTimeout(identifier)
-      console.log('CLEARED')
-    }
-    
-  }, [enteredEmail, enteredPassword])
+      console.log('EFFECT CLEANUP');
+    };
+  }, []);
 
+  // useEffect(() => {
+  //   const identifier = setTimeout(() => {
+  //     console.log('Checking form validity!');
+  //     setFormIsValid(
+  //       enteredEmail.includes('@') && enteredPassword.trim().length > 6
+  //     );
+  //   }, 500);
+
+  //   return () => {
+  //     console.log('CLEANUP');
+  //     clearTimeout(identifier);
+  //   };
+  // }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
+    setFormIsValid(
+      event.target.value.includes('@') && enteredPassword.trim().length > 6
+    );
   };
 
   const passwordChangeHandler = (event) => {
     setEnteredPassword(event.target.value);
 
-    
+    setFormIsValid(
+      enteredEmail.includes('@') && event.target.value.trim().length > 6
+    );
   };
 
   const validateEmailHandler = () => {
