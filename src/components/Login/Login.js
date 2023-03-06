@@ -20,11 +20,11 @@ const emailReducer = (state, action) => {
 
 const passwordReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
-    return { value: action.value, isValid: action.value.length > 6 }
+    return { value: action.value, isValid: action.value.trim().length > 6 }
   };
 
   if (action.type === 'INPUT_BLUR') {
-    return { value: state.value, isValid: state.value.length > 6}
+    return { value: state.value, isValid: state.value.trim().length > 6}
   }
 
   return { value: '', isValid: false }
@@ -64,23 +64,27 @@ const Login = (props) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const identifier = setTimeout(() => {
-  //     console.log('Checking form validity!');
-  //     setFormIsValid(
-  //       enteredEmail.includes('@') && enteredPassword.trim().length > 6
-  //     );
-  //   }, 500);
-
-  //   return () => {
-  //     console.log('CLEANUP');
-  //     clearTimeout(identifier);
-  //   };
-  // }, [enteredEmail, enteredPassword]);
-
   useEffect(() => {
-    setFormIsValid(userEmail.isValid && userPassword.isValid)
-  }, [userEmail.isValid, userPassword.isValid])
+    const identifier = setTimeout(() => {
+      console.log('Checking form validity!');
+      setFormIsValid(
+        userEmail.isValid && userPassword.isValid
+      );
+    }, 500);
+
+    return () => {
+      console.log('CLEANUP');
+      clearTimeout(identifier);
+    };
+  }, [userEmail.isValid, userPassword.isValid]);
+  //in the useEffect() above, we could've extracted the variables fro the object to variables 
+  //and use them in the dependencies.
+  //using object destructuring:
+  //  const { isValid: isPasswordValid } = userPassword
+  //  const { isValid: isEmailValid } = userEmail
+  //in the syntax above, I use oject destructuring to pull out the isValid property for each object
+  //and store it inside constants. The syntax above doesn't create new object because the {} are before assigning operator.
+
 
   const emailChangeHandler = (event) => {
     dispatchUserEmail({ type: 'USER_INPUT', value: event.target.value });
@@ -122,7 +126,7 @@ const Login = (props) => {
           <input
             type="email"
             id="email"
-            //value={enteredEmail}
+            value={userEmail.value}
             onChange={emailChangeHandler}
             onBlur={validateEmailHandler}
           />
@@ -136,7 +140,7 @@ const Login = (props) => {
           <input
             type="password"
             id="password"
-            //value={enteredPassword}
+            value={userPassword.value}
             onChange={passwordChangeHandler}
             onBlur={validatePasswordHandler}
           />
